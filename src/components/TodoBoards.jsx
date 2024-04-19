@@ -1,8 +1,8 @@
-import TodoForm from './TodoForm';
-import Modal from './Modal';
+// import TodoForm from './TodoForm';
+// import Modal from './Modal';
 import DropDown from './DropDown';
 import TodoPanel from './TodoPanel';
-import { gradient } from '../helpers/vars';
+import { gradients } from '../helpers/vars';
 
 
 const TodoBoards = ({ boards }) => {
@@ -14,20 +14,25 @@ const TodoBoards = ({ boards }) => {
       </div>
       
       <TodoPanel>
-        <Modal>
-          <TodoForm />
-        </Modal>
+        <div className="ml-auto avatar">
+          <div className="w-12 rounded-full">
+            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          </div>
+        </div>
       </TodoPanel>
       <div className="py-6 px-2 flex flex-col items-center justify-center gap-2 mb-6 bg-white rounded-md dark:bg-slate-800">
-        {boards.map((board) => (
-          <div key={board.id} className={`card w-96 bg-primary text-primary-content mb-3 ${gradient()}`}>
+        {boards.map((board, ind) => {
+          const taskCount =  board.taskIds.length;
+
+          return (
+          <div key={board.id} className={`card w-96 bg-primary text-primary-content mb-3 ${gradients[-ind+1]}`}>
             <div className="card-body flex flex-row">
-              <div className="radial-progress bg-primary text-primary-content border-4 border-primary w-14 h-14" style={{"--value":70}} role="progressbar">70%</div>
+              <div className="radial-progress bg-primary text-primary-content border-4 border-primary w-14 h-14" style={{"--value":70}} role="progressbar">{taskCount}</div>
               <p className={`card-title text-gray-200 ml-2`} >{board.title}</p>
               <DropDown />
             </div>
           </div>
-        ))}
+        )})}
       </div>
     </section>
   )

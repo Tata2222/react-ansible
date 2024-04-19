@@ -1,4 +1,4 @@
-const Modal = ({ children, cb=()=>{} }) => {
+const Modal = ({ children}) => {
   return (
     <div className='w-full'>
       <button 
@@ -12,7 +12,6 @@ const Modal = ({ children, cb=()=>{} }) => {
           <p className="py-4">{children}</p>
           <div className="modal-action">
             <form method="dialog">
-              <button onClick={cb} className="btn mr-2 bg-slate-200 dark:bg-slate-800">Create</button>
               <button className="btn bg-slate-200 dark:bg-slate-800">Close</button>
             </form>
           </div>

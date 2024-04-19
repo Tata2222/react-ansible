@@ -1,10 +1,10 @@
 import { IconCheck } from './icons';
-import { gradient } from '../helpers/vars'
+import { gradients } from '../helpers/vars'
 import DropDown from './DropDown';
 
-const TodoCard = ({ todo, deleteTodo, toggleTodo, editTodo }) => {
+const TodoCard = ({ todo, deleteTodo, toggleTodo, editTodo, ind }) => {
   return (
-    <div key={todo.id} className={`card w-96 bg-primary text-primary-content mb-3 ${gradient()} relative`}>
+    <div key={todo.id} className={`card w-96 bg-primary text-primary-content mb-3 ${gradients[ind-1]} relative`}>
       <div className="card-body flex flex-row pt-10">
         <button className="flex" onClick={()=>toggleTodo(todo)} >
             <span 

@@ -1,4 +1,4 @@
-const gradients = [
+export const gradients = [
   'bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500',
   'bg-gradient-to-bl from-cyan-500 to-blue-500',
   'bg-gradient-to-bl from-indigo-500',
@@ -10,7 +10,7 @@ const gradients = [
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday","Thursday", "Friday","Saturday"]
 
-export const gradient = () => gradients[Math.floor(Math.random() * gradients.length)]
+export const gradient = (ind) => gradients[ind]
 
 export const getDate = () => {
   const d = new Date();

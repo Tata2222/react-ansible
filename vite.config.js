@@ -8,7 +8,7 @@ dns.setDefaultResultOrder('verbatim')
 export default defineConfig({
   plugins: [react()],
   preview: {
-    port: 8081,
+    port: 3000,
     strictPort: true,
    },
   server: {
@@ -16,6 +16,6 @@ export default defineConfig({
      usePolling: true,
     },
     strictPort: true,
-    port: 8081,
+    port: 3000,
   },
 })
