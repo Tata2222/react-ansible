@@ -1,0 +1,59 @@
+- name: build and push img to docker
+  hosts:  localhost
+  become: yes
+  become_user: ubuntu
+
+  tasks:
+   - name: Install required system packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce and docker-compose
+      apt:
+        pkg:
+          - docker-ce
+          - docker-compose
+        state: latest
+        update_cache: true
+ 
+  - name: Installing nodejs
+    apt: name=nodejs 
+    update_cache: true
+
+  - name: Installing npm
+    apt: name=npm 
+    update_cache: true
+
+  - name: Stop the running container
+    command: docker stop react-app
+    ignore_errors: true
+
+  - name: remove the running container
+    command: docker rm react-app
+    ignore_errors: true
+
+    - name: remove the running image
+      command: docker rmi ubuntu/react-ansible:latest
+      ignore_errors: true
+
+    - name: Create and run container
+      command: docker run -d -p 3000:80 --name react-app ubuntu/react-ansible
